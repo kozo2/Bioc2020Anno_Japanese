@@ -86,6 +86,15 @@ Gene IDs for each gene measured, and as part of the output you may
 want to include the gene symbols, which are more likely to be familiar
 to a Biologist.
 
+データをアノテーションすることは複雑なタスクです。
+ハイスループット実験の場合、アナリストは通常、測定された各対象物のIDのセットからスタートします。
+結果をコラボレーターにとって有用なものにするために、
+これらのIDは、コラボレーターにとってより馴染みのある他のIDにマップする必要があり、
+またそれがさらなる分析に使われ得ます。例えば、RNA-Seqデータは、測定された各遺伝子の
+Entrez Gene IDしか持たない場合があり、出力の一部としてその遺伝子シンボルを
+含めたい場合があるでしょう。それらは生物学者に(訳注:IDよりも)
+よく知られている可能性が高いです。
+
 ### Learning goals
 
 * Understand what sort of annotation data are available
