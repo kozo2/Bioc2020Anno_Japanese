@@ -27,6 +27,14 @@ complex queries involving multiple data sources. In this workshop we
 will cover the various classes of annotation packages, what they
 contain, and how to use them efficiently. 
 
+ハイスループット実験の結果に追加情報を組み込むために使用できる、
+Bioconductorプロジェクトによって提供されるさまざまな
+アノテーションパッケージがあります。
+これは、複数のデータソース含まれる非常に複雑なクエリを、
+Ensembl IDを対応するHUGO遺伝子シンボルにマッピングするのと同じくらい簡単にします。
+このワークショップでは、アノテーションパッケージのさまざまなクラス、
+それらに含まれるもの、およびそれらを効率的に使用する方法について説明します。
+
 ### Prerequisites
 
 * Basic knowledge of R syntax
