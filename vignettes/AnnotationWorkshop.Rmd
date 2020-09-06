@@ -97,17 +97,17 @@ Entrez Gene IDしか持たない場合があり、出力の一部としてその
 
 ### Learning goals
 
-* Understand what sort of annotation data are available 利用可能なアノテーションデータの種類を理解する
-* Understand the difference between annotation sources (NCBI and EBI/EMBL) アノテーションソースの違い(NCBI と EBI/EMBL)を理解する
-* Gain familiarity with the various ways to query annotation packages アノテーションパッケージをクエリするためのさまざまな方法に慣れる
-* Get some practice making queries クエリを作る練習をする
+* Understand what sort of annotation data are available : 利用可能なアノテーションデータの種類を理解する
+* Understand the difference between annotation sources (NCBI and EBI/EMBL) : アノテーションソースの違い(NCBI と EBI/EMBL)を理解する
+* Gain familiarity with the various ways to query annotation packages : アノテーションパッケージをクエリするためのさまざまな方法に慣れる
+* Get some practice making queries : クエリを作る練習をする
 
 ### Learning objectives
 
-* Be able to use select and mapIds to map between identifiers
-* Be able to extract data from TxDb and EnsDb packages
-* Be able to make queries using biomaRt
-* Extract and utilize various data from AnnotationHub
+* Be able to use select and mapIds to map between identifiers : ID間をマップするためにselectとmapIdsを使うことができる
+* Be able to extract data from TxDb and EnsDb packages : TxDbとEnsDbパッケージからデータを抽出できる
+* Be able to make queries using biomaRt : biomaRtを使用してクエリを作成できる
+* Extract and utilize various data from AnnotationHub : AnnotationHubからさまざまなデータを抽出し、利用する
 
 ## Annotation Workshop
 
