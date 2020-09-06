@@ -291,7 +291,7 @@ How do you know what the central keys are? : どうしてセントラルキー�
 
 What keytypes or columns are available for a given annotation package?
 
-あるアノテーションパッケージで使用できるkeytypeまたは列は何かわかりますか?
+あるアノテーションパッケージで使用できるkeytypeまたはcolumnは何かわかりますか?
 
 ```{r, warning = FALSE}
 
@@ -317,13 +317,15 @@ select(hugene20sttranscriptcluster.db, ids, c("SYMBOL","MAP"))
 An alternative to `select` is `mapIds`, which gives control of
 duplicates
 
-* Same arguments as `select` with slight differences
+`select` に代わる手段は `mapIds` です。`mapIds`は重複をコントロールします。
 
-    - The columns argument can only specify one column
+* Same arguments as `select` with slight differences : `select`と同じ引数で、若干の違いがあります
 
-    - The keytype argument **must** be specified
+    - The columns argument can only specify one column : columns引数は1つのcolumnのみを指定できます
 
-    - An additional argument, multiVals used to control duplicates
+    - The keytype argument **must** be specified : keytype引数を指定する必要があります
+
+    - An additional argument, multiVals used to control duplicates : 追加の引数、multiValsは重複のコントロールに使用されます
 
 ```{r, warning = FALSE}
 
