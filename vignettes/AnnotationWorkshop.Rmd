@@ -273,18 +273,19 @@ select(hugene20sttranscriptcluster.db, ids, "SYMBOL")
 
 ## Questions!
 
-How do you know what the central keys are?
+How do you know what the central keys are? : どうしてセントラルキーが何であるかを知っているのですか?
 
-* If it's a ChipDb, the central key are the manufacturer's probe IDs
+* If it's a ChipDb, the central key are the manufacturer's probe IDs : それがChipDbの場合、セントラルキーは製造元のプローブIDです
 
 * It's sometimes in the name - org.Hs.eg.db, where 'eg' means Entrez
-  Gene ID
+  Gene ID : org.Hs.eg.db という名前の場合もあります。ここで 'eg' は Entrez Gene ID を意味します。
 
 * You can see examples using e.g., head(keys(*annopkg*)), and infer
-  from that
+  from that : たとえば、head(keys(*annopkg*)) を使用して例を確認し、それから推測することができます
 
 * But note that it's never necessary to know the central key, as long
-  as you specify the keytype
+  as you specify the keytype : ただし、keytypeを指定したら、
+  セントラルキーを知る必要はないことに注意してください。
 
 ## More questions!
 
