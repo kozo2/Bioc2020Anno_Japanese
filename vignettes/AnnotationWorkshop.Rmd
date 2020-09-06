@@ -364,14 +364,16 @@ mapIds(hugene20sttranscriptcluster.db, ids, "SYMBOL", "PROBEID", multiVals = "as
 
 Using either the hugene20sttranscriptcluster.db or org.Hs.eg.db package,
 
-* What gene symbol corresponds to Entrez Gene ID 1000?
+* What gene symbol corresponds to Entrez Gene ID 1000? : Entrez Gene ID 1000に対応する遺伝子シンボルは何でしょうか?
 
-* What is the Ensembl Gene ID for PPARG?
+* What is the Ensembl Gene ID for PPARG? : PPARGのEnsembl Gene IDは何でしょうか?
 
-* What is the UniProt ID for GAPDH?
+* What is the UniProt ID for GAPDH? : GAPDHのUniProt IDは何でしょうか?
 
 * How many of the probesets from the ExpressionSet (eset) we loaded map to a
-  single gene? How many don't map to a gene at all?
+  single gene? How many don't map to a gene at all? : ロードしたExpressionSet (eset)
+  のプローブセットのうち、いくつが単一の遺伝子にマップされるでしょうか?
+  いくつが遺伝子にまったくマップされないでしょうか?
 
 ## TxDb packages
 
