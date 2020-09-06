@@ -127,9 +127,11 @@ library(Organism.dplyr)
 ```
 
 
-## What do we mean by annotation?
+## What do we mean by annotation? アノテーションとは何を意味するか?
 
 Map a known ID to other functional or positional information
+
+既知のIDを他の機能または位置情報にマップする
 
 ```{r, out.width = "75%", echo = FALSE}
 
