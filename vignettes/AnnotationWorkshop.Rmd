@@ -140,10 +140,12 @@ knitr::include_graphics("./mapping.png")
 ```
 
 
-## Specific goal
+## Specific goal 具体的な目標
 
 We have data and statistics, and we want to add other useful
 information
+
+データと統計があり、他の有用な情報を追加したい
 
 ```{r, out.width = "75%", echo = FALSE}
 
