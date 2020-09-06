@@ -249,11 +249,14 @@ Where ここで
     + if the keytype is the **central** key, it can remain unspecified : keytypeが**セントラル**キーの場合、未指定のままにすることができます
 
 
-## Simple example
+## Simple example 簡単な例
 
 Say we have analyzed data from an Affymetrix Human Gene ST 2.0 array
 and want to know what the genes are. For purposes of this lab, we
 just select some IDs at random.
+
+Affymetrix Human Gene ST 2.0アレイ由来のデータを分析し、遺伝子が何かを知りたいとします。
+この実習では、ランダムにいくつかのIDだけをセレクトしています。
 
 ```{r, warning = FALSE}
 
