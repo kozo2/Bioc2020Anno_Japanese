@@ -380,6 +380,9 @@ Using either the hugene20sttranscriptcluster.db or org.Hs.eg.db package,
 TxDb packages contain positional information; the contents can be
 inferred by the package name
 
+TxDbパッケージには位置情報が含まれています; その内容は
+パッケージ名から推測できます
+
 **TxDb.Species.Source.Build.Table**
 
 * TxDb.Hsapiens.UCSC.hg19.knownGene
