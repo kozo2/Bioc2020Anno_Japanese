@@ -145,7 +145,7 @@ knitr::include_graphics("./mapping.png")
 We have data and statistics, and we want to add other useful
 information
 
-データと統計があり、他の有用な情報を追加したい
+我々は何らかのデータと統計量を持っており、他の有用な情報を追加したいとします。
 
 ```{r, out.width = "75%", echo = FALSE}
 
@@ -156,6 +156,9 @@ knitr::include_graphics("./boxes.png")
 
 The end result might be as simple as a data.frame or HTML table, or as complex as a
 `RangedSummarizedExperiment`
+
+最終結果は、data.frameまたはHTMLテーブルのように単純な場合もあれば、
+`RangedSummarizedExperiment` のように複雑な場合もあります。
 
 ## Data containers
 
