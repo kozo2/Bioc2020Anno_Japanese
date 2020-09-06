@@ -233,18 +233,20 @@ knitr::kable(df)
 
 The main function is `select`:
 
+主な機能は `select` です:
+
 select(*annopkg*, *keys*, *columns*, *keytype*)
 
-Where
+Where ここで
 
-* annopkg is the annotation package
+* annopkg is the annotation package : annopkg はアノテーションパッケージです
 
-* keys are the IDs that we **know**
+* keys are the IDs that we **know** : keys は私たちが**知っている**IDです
 
-* columns are the values we **want**
+* columns are the values we **want** : columns は我々が**欲しい**値です
 
-* keytype is the type of key used
-    + if the keytype is the **central** key, it can remain unspecified
+* keytype is the type of key used : keytype は使用される key のタイプです
+    + if the keytype is the **central** key, it can remain unspecified : keytypeが**セントラル**キーの場合、未指定のままにすることができます
 
 
 ## Simple example
