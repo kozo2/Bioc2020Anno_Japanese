@@ -333,11 +333,15 @@ mapIds(hugene20sttranscriptcluster.db, ids, "SYMBOL", "PROBEID")
 
 ```
 
-## Choices for multiVals
+## Choices for multiVals (multiValsの選択肢)
 
 Default is `first`, where we just choose the first of the
 duplicates. Other choices are `list`, `CharacterList`, `filter`,
 `asNA` or a user-specified function.
+
+デフォルトは`first`です。これは最初の重複だけを選択します。
+その他の選択肢は、`list`, `CharacterList`, `filter`,
+`asNA`またはユーザー指定の関数です。
 
 ```{r, warning = FALSE}
 
