@@ -211,11 +211,11 @@ head(pData(featureData(eset)))
 
 ### Cons
 
-* Difficult to create
+* Difficult to create : 作るのが難しい
 
-* Cumbersome to extract data by hand
+* Cumbersome to extract data by hand : 手作業でデータを抽出するのは面倒
 
-* Useful only within R
+* Useful only within R : R内でのみ有用
 
 ## Annotation sources
 
