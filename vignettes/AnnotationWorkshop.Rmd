@@ -86,7 +86,7 @@ Gene IDs for each gene measured, and as part of the output you may
 want to include the gene symbols, which are more likely to be familiar
 to a Biologist.
 
-データをアノテーションすることは複雑なタスクです。
+データをアノテートすることは複雑なタスクです。
 ハイスループット実験の場合、アナリストは通常、測定された各対象物のIDのセットからスタートします。
 結果をコラボレーターにとって有用なものにするために、
 これらのIDは、コラボレーターにとってより馴染みのある他のIDにマップする必要があり、
@@ -97,10 +97,10 @@ Entrez Gene IDしか持たない場合があり、出力の一部としてその
 
 ### Learning goals
 
-* Understand what sort of annotation data are available
-* Understand the difference between annotation sources (NCBI and EBI/EMBL)
-* Gain familiarity with the various ways to query annotation packages
-* Get some practice making queries
+* Understand what sort of annotation data are available 利用可能なアノテーションデータの種類を理解する
+* Understand the difference between annotation sources (NCBI and EBI/EMBL) アノテーションソースの違い(NCBI と EBI/EMBL)を理解する
+* Gain familiarity with the various ways to query annotation packages アノテーションパッケージをクエリするためのさまざまな方法に慣れる
+* Get some practice making queries クエリを作る練習をする
 
 ### Learning objectives
 
