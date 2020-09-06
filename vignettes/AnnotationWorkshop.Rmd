@@ -291,6 +291,8 @@ How do you know what the central keys are? : どうしてセントラルキー�
 
 What keytypes or columns are available for a given annotation package?
 
+あるアノテーションパッケージで使用できるkeytypeまたは列は何かわかりますか?
+
 ```{r, warning = FALSE}
 
 keytypes(hugene20sttranscriptcluster.db)
@@ -300,6 +302,8 @@ columns(hugene20sttranscriptcluster.db)
 ## Another example
 
 There is one issue with `select` however.
+
+ただし、`select` には1つ問題があります。
 
 ```{r, warning = FALSE}
 
