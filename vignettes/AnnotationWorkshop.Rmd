@@ -517,6 +517,9 @@ txs[txs %over% gns[1:2,]]
 SummarizedExperiment objects are like ExpressionSets, but the row-wise
 annotations are GRanges, so you can subset by genomic locations:
 
+SummarizedExperiment オブジェクトは ExpressionSets のようなものですが
+、行ごとのアノテーションは GRanges なので、ゲノムの位置でサブセット化できます。
+
 ```{r, out.width = "65%", echo = FALSE}
 
 knitr::include_graphics("./subset.png")
@@ -528,6 +531,9 @@ data and other rectangular data (feature x sample data). Incoming packages are
 now strongly recommended to use this class representation instead of
 ExpressionSet.
 
+SummarizedExperiment オブジェクトは、発現データやその他の長方形データ (機能 x サンプルデータ)
+を表すための一般的なオブジェクトです。
+これからのパッケージには ExpressionSet の代わりにこのクラス表現を使うことを強くお勧めします。
 
 ## TxDb exercises
 
