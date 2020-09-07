@@ -463,14 +463,21 @@ txs
 ## Other accessors
 
 * Positional information can be extracted for `transcripts`, `genes`, coding
-  sequences (`cds`), `promoters`  and `exons`.
+  sequences (`cds`), `promoters`  and `exons`. : 位置情報は、
+  `transcripts`、`genes`、コーディング配列 (`cds`)、`promoters`、そして `exons`
+  に対して抽出できます。
 
 * Positional information can be extracted for most of the above, grouped
   by a second element. For example, our `transcriptsBy` call was all
-  transcripts, grouped by gene.
+  transcripts, grouped by gene. : 位置情報は上記のほとんどに対して、
+  2番目の要素でグループ化して抽出できます。
+  たとえば、さっき我々が使った `transcriptsBy` は gene でグループ化された
+  すべての transcripts でした。
 
 * More detail on these *Ranges objects is beyond the scope of this
-  workshop, but why we want them is not.
+  workshop, but why we want them is not. : これらの *Ranges オブジェクトの
+  詳細はこのワークショップの範囲を超えていますが、
+  なぜそれらが必要なのかは範囲外ではありません。
 
 ## Why *Ranges objects
 
