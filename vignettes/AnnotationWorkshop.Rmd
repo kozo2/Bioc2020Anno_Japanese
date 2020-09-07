@@ -550,7 +550,12 @@ genome? : hg19ゲノムのchr2の2858473と3271812の間にある遺伝子の数
 OrganismDb packages are meta-packages that contain an OrgDb, a TxDb,
 and a GO.db package and allow cross-queries between those packages.
 
+OrganismDbパッケージは、OrgDb、TxDb、およびGO.dbパッケージを含み、
+それらのパッケージ間のクロスクエリを可能にするメタパッケージです。
+
 All previous accessors work; `select`, `mapIds`, `transcripts`, etc.
+
+前述のすべてのアクセサーが機能します。`select`、`mapIds`、`transcripts`など。
 
 ```{r, warning = FALSE}
 
@@ -562,11 +567,11 @@ Homo.sapiens
 
 ## OrganismDb packages
 
-* Updateable - can change TxDb object
+* Updateable - can change TxDb object : 更新可能 - TxDbオブジェクトを変更できます
 
-* columns and keytypes span all underlying objects
+* columns and keytypes span all underlying objects : columns と keytypes はすべての内在するオブジェクトにまたがります
 
-* Calls to TxDb accessors include a 'columns' argument
+* Calls to TxDb accessors include a 'columns' argument : TxDbのアクセサーへの呼び出しには'columns'引数が含まれます
 
 ```{r , warning = FALSE}
 
