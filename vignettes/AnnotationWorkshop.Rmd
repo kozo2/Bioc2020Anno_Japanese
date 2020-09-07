@@ -485,8 +485,15 @@ The main rationale for *Ranges objects is to allow us to easily select
 and subset data based on genomic position information. This is really
 powerful!
 
+*Ranges オブジェクトの存在の根本的理由はゲノムの位置情報に基づいて
+データを簡単に選択およびサブセット化できるようにすることです。
+これは本当に強力です!
+
 `GRanges` and `GRangesLists` act like data.frames and lists, and can
 be subsetted using the `[` function. As a really artificial example:
+
+`GRanges` と `GRangesLists` は data.frames や lists のように機能し、
+`[` 関数を使用してサブセット化できます。本当に人為的な例として:
 
 ```{r, warning = FALSE}
 
