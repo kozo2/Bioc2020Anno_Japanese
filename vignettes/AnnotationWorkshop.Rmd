@@ -403,6 +403,9 @@ TxDb.Athaliana.BioMart.plantsmart22
 EnsDb packages are similar to TxDb packages, but based on Ensembl
 mappings
 
+EnsDb パッケージは TxDb パッケージに似ていますが、Ensemblのマッピング
+情報に基づいています
+
 * EnsDb.Rnorvegicus.v79
 * EnsDb.Hsapiens.v79
 * EnsDb.Mmusculus.v79
@@ -412,6 +415,9 @@ mappings
 
 As with ChipDb and OrgDb packages, `select` and `mapIds` can be used
 to make queries
+
+ChipDbおよびOrgDbパッケージと同様に、クエリするのに `select` と `mapIds`
+が使えます。
 
 ```{r, warning = FALSE}
 
@@ -423,11 +429,18 @@ select(EnsDb.Hsapiens.v79, c("1", "10"),
 ```
 But this is not how one normally uses them...
 
+しかし、これは通常の使用方法ではありません...
+
 ## GRanges
 
 The normal use case for transcript packages is to extract positional
 information into a `GRanges` or `GRangesList` object. An example is
 the genomic position of all genes:
+
+transcriptパッケージの通常の使用例は、位置情報を
+`GRanges` もしくは `GRangesList` オブジェクトに抽出することです。
+一例は、すべての遺伝子のゲノムでの位置です:
+
 
 ```{r, warning = FALSE}
 
