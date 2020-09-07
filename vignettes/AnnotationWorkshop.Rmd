@@ -537,12 +537,12 @@ SummarizedExperiment オブジェクトは、発現データやその他の長�
 
 ## TxDb exercises
 
-* How many transcripts does PPARG have, according to UCSC?
+* How many transcripts does PPARG have, according to UCSC? : UCSCによると、PPARGにはいくつのtranscriptsがありますか?
 
-* Does Ensembl agree?
+* Does Ensembl agree? : Ensembl (訳注: による前述のtranscriptsの数) は一致しますか?
 
 * How many genes are between 2858473 and 3271812 on chr2 in the hg19
-genome?
+genome? : hg19ゲノムのchr2の2858473と3271812の間にある遺伝子の数はいくつですか?
     - Hint: you make a `GRanges` like this - `GRanges("chr2", IRanges(2858473,3271812))`
 
 ## OrganismDb packages
