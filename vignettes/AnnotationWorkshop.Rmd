@@ -504,13 +504,13 @@ txs[txs %over% gns[1:2,]]
 
 ## *Ranges use cases
 
-* Gene expression changes near differentially methylated CpG islands
+* Gene expression changes near differentially methylated CpG islands : differentially methylated CpGアイランドに近い領域の遺伝子発現の変化
 
-* Closest genes to a set of interesting SNPs
+* Closest genes to a set of interesting SNPs : 一連の興味のあるSNPsに最も近い遺伝子群
 
-* Genes near DNAseI hypersensitivity clusters
+* Genes near DNAseI hypersensitivity clusters : DNA分解酵素に過敏なクラスター付近の遺伝子
 
-* Number of CpGs measured over Gene X by Chip Y
+* Number of CpGs measured over Gene X by Chip Y : Chip Yによって遺伝子 Xで測定されたCpGsの数
 
 ## SummarizedExperiment objects
 
