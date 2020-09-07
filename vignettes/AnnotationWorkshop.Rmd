@@ -581,14 +581,15 @@ head(genes(Homo.sapiens, columns = c("ENTREZID","ALIAS","UNIPROT")),4)
 
 ## OrganismDb exercises
 
-* Get all the GO terms for BRCA1
+* Get all the GO terms for BRCA1 : BRCA1のすべてのGO termを取得しましょう
 
-* What gene does the UCSC transcript ID uc002fai.3 map to?
+* What gene does the UCSC transcript ID uc002fai.3 map to? : UCSC transcript ID uc002fai.3 はどの遺伝子にマップされますか?
 
-* How many other transcripts does that gene have?
+* How many other transcripts does that gene have? : その遺伝子には他にいくつの転写産物がありますか?
 
 * Get all the transcripts from the hg19 genome build, along with their
-  Ensembl gene ID, UCSC transcript ID and gene symbol
+  Ensembl gene ID, UCSC transcript ID and gene symbol : hg19 ゲノムビルドからすべての転写産物を、
+  Ensemblの遺伝子ID、UCSCの転写産物ID、および遺伝子シンボルとともに取得しましょう
 
 ## Organism.dplyr package
 
