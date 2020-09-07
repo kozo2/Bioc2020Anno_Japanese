@@ -452,6 +452,8 @@ gns
 
 Or the genomic position of all transcripts **by** gene:
 
+または、遺伝子**ごとの**すべての転写産物のゲノム位置:
+
 ```{r, warning = FALSE}
 
 txs <- transcriptsBy(TxDb.Hsapiens.UCSC.hg19.knownGene)
