@@ -729,6 +729,10 @@ AnnotationHub is a package that allows us to query and download many
 different annotation objects, without having to explicitly install
 them.
 
+AnnotationHubは、明示的にインストールしなくても、
+さまざまなアノテーションオブジェクトをクエリしてダウンロードできるように
+してくれるパッケージです。
+
 ```{r, include = FALSE}
 
 library(AnnotationHub)
@@ -750,6 +754,9 @@ hub
 Finding the 'right' resource on AnnotationHub is like using Google - a
 well posed query is necessary to find what you are after. Useful
 queries are based on
+
+AnnotationHubで '適切な' リソースを見つけることは、Googleを使うようなものです。
+目的物を見つけるには、適切なクエリが必要です。有用なクエリは
 
 * Data provider
 
@@ -830,6 +837,8 @@ whatIwant <- keepStandardChromosomes(whatIwant, pruning.mode = "coarse")
 
 We can use these data as they are, or convert to a TxDb format:
 
+これらのデータをそのまま使用することも、TxDbフォーマットに変換することもできます:
+
 ```{r, warning = FALSE}
 
 GRCh38TxDb <- makeTxDbFromGRanges(whatIwant)
@@ -839,10 +848,10 @@ GRCh38TxDb
 ## AnnotationHub exercises
 
 * How many resources are on AnnotationHub for Atlantic salmon (Salmo
-  salar)?
+  salar)? : AnnotationHubに 大西洋鮭 (Salmo salar) のリソースはいくつありますか？
 
 * Get the most recent Ensembl build for domesticated dog (Canis
-  familiaris) and make a TxDb
+  familiaris) and make a TxDb : 犬 (Canis familiaris) の最新のEnsemblビルドを取得し、TxDbを作ってみましょう
 
 ## biomaRt
 
