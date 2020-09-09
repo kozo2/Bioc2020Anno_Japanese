@@ -27,6 +27,14 @@ complex queries involving multiple data sources. In this workshop we
 will cover the various classes of annotation packages, what they
 contain, and how to use them efficiently. 
 
+ハイスループット実験の結果に追加情報を組み込むために使用できる、
+Bioconductorプロジェクトによって提供されるさまざまな
+アノテーションパッケージがあります。
+これは、複数のデータソース含まれる非常に複雑なクエリを、
+Ensembl IDを対応するHUGO遺伝子シンボルにマッピングするのと同じくらい簡単にします。
+このワークショップでは、アノテーションパッケージのさまざまなクラス、
+それらに含まれるもの、およびそれらを効率的に使用する方法について説明します。
+
 ### Prerequisites
 
 * Basic knowledge of R syntax
@@ -78,19 +86,28 @@ Gene IDs for each gene measured, and as part of the output you may
 want to include the gene symbols, which are more likely to be familiar
 to a Biologist.
 
+データをアノテートすることは複雑なタスクです。
+ハイスループット実験の場合、アナリストは通常、測定された各対象物のIDのセットからスタートします。
+結果をコラボレーターにとって有用なものにするために、
+これらのIDは、コラボレーターにとってより馴染みのある他のIDにマップする必要があり、
+またそれがさらなる分析に使われ得ます。例えば、RNA-Seqデータは、測定された各遺伝子の
+Entrez Gene IDしか持たない場合があり、出力の一部としてその遺伝子シンボルを
+含めたい場合があるでしょう。それらは生物学者に(訳注:IDよりも)
+よく知られている可能性が高いです。
+
 ### Learning goals
 
-* Understand what sort of annotation data are available
-* Understand the difference between annotation sources (NCBI and EBI/EMBL)
-* Gain familiarity with the various ways to query annotation packages
-* Get some practice making queries
+* Understand what sort of annotation data are available : 利用可能なアノテーションデータの種類を理解する
+* Understand the difference between annotation sources (NCBI and EBI/EMBL) : アノテーションソースの違い(NCBI と EBI/EMBL)を理解する
+* Gain familiarity with the various ways to query annotation packages : アノテーションパッケージをクエリするためのさまざまな方法に慣れる
+* Get some practice making queries : クエリを作る練習をする
 
 ### Learning objectives
 
-* Be able to use select and mapIds to map between identifiers
-* Be able to extract data from TxDb and EnsDb packages
-* Be able to make queries using biomaRt
-* Extract and utilize various data from AnnotationHub
+* Be able to use select and mapIds to map between identifiers : ID間をマップするためにselectとmapIdsを使うことができる
+* Be able to extract data from TxDb and EnsDb packages : TxDbとEnsDbパッケージからデータを抽出できる
+* Be able to make queries using biomaRt : biomaRtを使用してクエリを作成できる
+* Extract and utilize various data from AnnotationHub : AnnotationHubからさまざまなデータを抽出し、利用する
 
 ## Annotation Workshop
 
@@ -110,9 +127,11 @@ library(Organism.dplyr)
 ```
 
 
-## What do we mean by annotation?
+## What do we mean by annotation? アノテーションとは何を意味するか?
 
 Map a known ID to other functional or positional information
+
+既知のIDを他の機能または位置情報にマップする
 
 ```{r, out.width = "75%", echo = FALSE}
 
@@ -121,10 +140,12 @@ knitr::include_graphics("./mapping.png")
 ```
 
 
-## Specific goal
+## Specific goal 具体的な目標
 
 We have data and statistics, and we want to add other useful
 information
+
+我々は何らかのデータと統計量を持っており、他の有用な情報を追加したいとします。
 
 ```{r, out.width = "75%", echo = FALSE}
 
@@ -135,6 +156,9 @@ knitr::include_graphics("./boxes.png")
 
 The end result might be as simple as a data.frame or HTML table, or as complex as a
 `RangedSummarizedExperiment`
+
+最終結果は、data.frameまたはHTMLテーブルのように単純な場合もあれば、
+`RangedSummarizedExperiment` のように複雑な場合もあります。
 
 ## Data containers
 
@@ -187,11 +211,11 @@ head(pData(featureData(eset)))
 
 ### Cons
 
-* Difficult to create
+* Difficult to create : 作るのが難しい
 
-* Cumbersome to extract data by hand
+* Cumbersome to extract data by hand : 手作業でデータを抽出するのは面倒
 
-* Useful only within R
+* Useful only within R : R内でのみ有用
 
 ## Annotation sources
 
@@ -209,25 +233,30 @@ knitr::kable(df)
 
 The main function is `select`:
 
+主な機能は `select` です:
+
 select(*annopkg*, *keys*, *columns*, *keytype*)
 
-Where
+Where ここで
 
-* annopkg is the annotation package
+* annopkg is the annotation package : annopkg はアノテーションパッケージです
 
-* keys are the IDs that we **know**
+* keys are the IDs that we **know** : keys は私たちが**知っている**IDです
 
-* columns are the values we **want**
+* columns are the values we **want** : columns は我々が**欲しい**値です
 
-* keytype is the type of key used
-    + if the keytype is the **central** key, it can remain unspecified
+* keytype is the type of key used : keytype は使用される key のタイプです
+    + if the keytype is the **central** key, it can remain unspecified : keytypeが**セントラル**キーの場合、未指定のままにすることができます
 
 
-## Simple example
+## Simple example 簡単な例
 
 Say we have analyzed data from an Affymetrix Human Gene ST 2.0 array
 and want to know what the genes are. For purposes of this lab, we
 just select some IDs at random.
+
+Affymetrix Human Gene ST 2.0アレイ由来のデータを分析し、遺伝子が何かを知りたいとします。
+この実習では、ランダムにいくつかのIDだけをセレクトしています。
 
 ```{r, warning = FALSE}
 
@@ -244,22 +273,25 @@ select(hugene20sttranscriptcluster.db, ids, "SYMBOL")
 
 ## Questions!
 
-How do you know what the central keys are?
+How do you know what the central keys are? : どうしてセントラルキーが何であるかを知っているのですか?
 
-* If it's a ChipDb, the central key are the manufacturer's probe IDs
+* If it's a ChipDb, the central key are the manufacturer's probe IDs : それがChipDbの場合、セントラルキーは製造元のプローブIDです
 
 * It's sometimes in the name - org.Hs.eg.db, where 'eg' means Entrez
-  Gene ID
+  Gene ID : org.Hs.eg.db という名前の場合もあります。ここで 'eg' は Entrez Gene ID を意味します。
 
 * You can see examples using e.g., head(keys(*annopkg*)), and infer
-  from that
+  from that : たとえば、head(keys(*annopkg*)) を使用して例を確認し、それから推測することができます
 
 * But note that it's never necessary to know the central key, as long
-  as you specify the keytype
+  as you specify the keytype : ただし、keytypeを指定したら、
+  セントラルキーを知る必要はないことに注意してください。
 
 ## More questions!
 
 What keytypes or columns are available for a given annotation package?
+
+あるアノテーションパッケージで使用できるkeytypeまたはcolumnは何かわかりますか?
 
 ```{r, warning = FALSE}
 
@@ -270,6 +302,8 @@ columns(hugene20sttranscriptcluster.db)
 ## Another example
 
 There is one issue with `select` however.
+
+ただし、`select` には1つ問題があります。
 
 ```{r, warning = FALSE}
 
@@ -283,13 +317,15 @@ select(hugene20sttranscriptcluster.db, ids, c("SYMBOL","MAP"))
 An alternative to `select` is `mapIds`, which gives control of
 duplicates
 
-* Same arguments as `select` with slight differences
+`select` に代わる手段は `mapIds` です。`mapIds`は重複をコントロールします。
 
-    - The columns argument can only specify one column
+* Same arguments as `select` with slight differences : `select`と同じ引数で、若干の違いがあります
 
-    - The keytype argument **must** be specified
+    - The columns argument can only specify one column : columns引数は1つのcolumnのみを指定できます
 
-    - An additional argument, multiVals used to control duplicates
+    - The keytype argument **must** be specified : keytype引数を指定する必要があります
+
+    - An additional argument, multiVals used to control duplicates : 追加の引数、multiValsは重複のコントロールに使用されます
 
 ```{r, warning = FALSE}
 
@@ -297,11 +333,15 @@ mapIds(hugene20sttranscriptcluster.db, ids, "SYMBOL", "PROBEID")
 
 ```
 
-## Choices for multiVals
+## Choices for multiVals (multiValsの選択肢)
 
 Default is `first`, where we just choose the first of the
 duplicates. Other choices are `list`, `CharacterList`, `filter`,
 `asNA` or a user-specified function.
+
+デフォルトは`first`です。これは最初の重複だけを選択します。
+その他の選択肢は、`list`, `CharacterList`, `filter`,
+`asNA`またはユーザー指定の関数です。
 
 ```{r, warning = FALSE}
 
@@ -324,19 +364,24 @@ mapIds(hugene20sttranscriptcluster.db, ids, "SYMBOL", "PROBEID", multiVals = "as
 
 Using either the hugene20sttranscriptcluster.db or org.Hs.eg.db package,
 
-* What gene symbol corresponds to Entrez Gene ID 1000?
+* What gene symbol corresponds to Entrez Gene ID 1000? : Entrez Gene ID 1000に対応する遺伝子シンボルは何でしょうか?
 
-* What is the Ensembl Gene ID for PPARG?
+* What is the Ensembl Gene ID for PPARG? : PPARGのEnsembl Gene IDは何でしょうか?
 
-* What is the UniProt ID for GAPDH?
+* What is the UniProt ID for GAPDH? : GAPDHのUniProt IDは何でしょうか?
 
 * How many of the probesets from the ExpressionSet (eset) we loaded map to a
-  single gene? How many don't map to a gene at all?
+  single gene? How many don't map to a gene at all? : ロードしたExpressionSet (eset)
+  のプローブセットのうち、いくつが単一の遺伝子にマップされるでしょうか?
+  いくつが遺伝子にまったくマップされないでしょうか?
 
 ## TxDb packages
 
 TxDb packages contain positional information; the contents can be
 inferred by the package name
+
+TxDbパッケージには位置情報が含まれています; その内容は
+パッケージ名から推測できます
 
 **TxDb.Species.Source.Build.Table**
 
@@ -358,6 +403,9 @@ TxDb.Athaliana.BioMart.plantsmart22
 EnsDb packages are similar to TxDb packages, but based on Ensembl
 mappings
 
+EnsDb パッケージは TxDb パッケージに似ていますが、Ensemblのマッピング
+情報に基づいています
+
 * EnsDb.Rnorvegicus.v79
 * EnsDb.Hsapiens.v79
 * EnsDb.Mmusculus.v79
@@ -367,6 +415,9 @@ mappings
 
 As with ChipDb and OrgDb packages, `select` and `mapIds` can be used
 to make queries
+
+ChipDbおよびOrgDbパッケージと同様に、クエリするのに `select` と `mapIds`
+が使えます。
 
 ```{r, warning = FALSE}
 
@@ -378,11 +429,18 @@ select(EnsDb.Hsapiens.v79, c("1", "10"),
 ```
 But this is not how one normally uses them...
 
+しかし、これは通常の使用方法ではありません...
+
 ## GRanges
 
 The normal use case for transcript packages is to extract positional
 information into a `GRanges` or `GRangesList` object. An example is
 the genomic position of all genes:
+
+transcriptパッケージの通常の使用例は、位置情報を
+`GRanges` もしくは `GRangesList` オブジェクトに抽出することです。
+一例は、すべての遺伝子のゲノムでの位置です:
+
 
 ```{r, warning = FALSE}
 
@@ -394,6 +452,8 @@ gns
 
 Or the genomic position of all transcripts **by** gene:
 
+または、遺伝子**ごとの**すべての転写産物のゲノム位置:
+
 ```{r, warning = FALSE}
 
 txs <- transcriptsBy(TxDb.Hsapiens.UCSC.hg19.knownGene)
@@ -403,14 +463,21 @@ txs
 ## Other accessors
 
 * Positional information can be extracted for `transcripts`, `genes`, coding
-  sequences (`cds`), `promoters`  and `exons`.
+  sequences (`cds`), `promoters`  and `exons`. : 位置情報は、
+  `transcripts`、`genes`、コーディング配列 (`cds`)、`promoters`、そして `exons`
+  に対して抽出できます。
 
 * Positional information can be extracted for most of the above, grouped
   by a second element. For example, our `transcriptsBy` call was all
-  transcripts, grouped by gene.
+  transcripts, grouped by gene. : 位置情報は上記のほとんどに対して、
+  2番目の要素でグループ化して抽出できます。
+  たとえば、さっき我々が使った `transcriptsBy` は gene でグループ化された
+  すべての transcripts でした。
 
 * More detail on these *Ranges objects is beyond the scope of this
-  workshop, but why we want them is not.
+  workshop, but why we want them is not. : これらの *Ranges オブジェクトの
+  詳細はこのワークショップの範囲を超えていますが、
+  なぜそれらが必要なのかは範囲外ではありません。
 
 ## Why *Ranges objects
 
@@ -418,8 +485,15 @@ The main rationale for *Ranges objects is to allow us to easily select
 and subset data based on genomic position information. This is really
 powerful!
 
+*Ranges オブジェクトの存在の根本的理由はゲノムの位置情報に基づいて
+データを簡単に選択およびサブセット化できるようにすることです。
+これは本当に強力です!
+
 `GRanges` and `GRangesLists` act like data.frames and lists, and can
 be subsetted using the `[` function. As a really artificial example:
+
+`GRanges` と `GRangesLists` は data.frames や lists のように機能し、
+`[` 関数を使用してサブセット化できます。本当に人為的な例として:
 
 ```{r, warning = FALSE}
 
@@ -430,18 +504,21 @@ txs[txs %over% gns[1:2,]]
 
 ## *Ranges use cases
 
-* Gene expression changes near differentially methylated CpG islands
+* Gene expression changes near differentially methylated CpG islands : differentially methylated CpGアイランドに近い領域の遺伝子発現の変化
 
-* Closest genes to a set of interesting SNPs
+* Closest genes to a set of interesting SNPs : 一連の興味のあるSNPsに最も近い遺伝子群
 
-* Genes near DNAseI hypersensitivity clusters
+* Genes near DNAseI hypersensitivity clusters : DNA分解酵素に過敏なクラスター付近の遺伝子
 
-* Number of CpGs measured over Gene X by Chip Y
+* Number of CpGs measured over Gene X by Chip Y : Chip Yによって遺伝子 Xで測定されたCpGsの数
 
 ## SummarizedExperiment objects
 
 SummarizedExperiment objects are like ExpressionSets, but the row-wise
 annotations are GRanges, so you can subset by genomic locations:
+
+SummarizedExperiment オブジェクトは ExpressionSets のようなものですが
+、行ごとのアノテーションは GRanges なので、ゲノムの位置でサブセット化できます。
 
 ```{r, out.width = "65%", echo = FALSE}
 
@@ -454,15 +531,18 @@ data and other rectangular data (feature x sample data). Incoming packages are
 now strongly recommended to use this class representation instead of
 ExpressionSet.
 
+SummarizedExperiment オブジェクトは、発現データやその他の長方形データ (機能 x サンプルデータ)
+を表すための一般的なオブジェクトです。
+これからのパッケージには ExpressionSet の代わりにこのクラス表現を使うことを強くお勧めします。
 
 ## TxDb exercises
 
-* How many transcripts does PPARG have, according to UCSC?
+* How many transcripts does PPARG have, according to UCSC? : UCSCによると、PPARGにはいくつのtranscriptsがありますか?
 
-* Does Ensembl agree?
+* Does Ensembl agree? : Ensembl (訳注: による前述のtranscriptsの数) は一致しますか?
 
 * How many genes are between 2858473 and 3271812 on chr2 in the hg19
-genome?
+genome? : hg19ゲノムのchr2の2858473と3271812の間にある遺伝子の数はいくつですか?
     - Hint: you make a `GRanges` like this - `GRanges("chr2", IRanges(2858473,3271812))`
 
 ## OrganismDb packages
@@ -470,7 +550,12 @@ genome?
 OrganismDb packages are meta-packages that contain an OrgDb, a TxDb,
 and a GO.db package and allow cross-queries between those packages.
 
+OrganismDbパッケージは、OrgDb、TxDb、およびGO.dbパッケージを含み、
+それらのパッケージ間のクロスクエリを可能にするメタパッケージです。
+
 All previous accessors work; `select`, `mapIds`, `transcripts`, etc.
+
+前述のすべてのアクセサーが機能します。`select`、`mapIds`、`transcripts`など。
 
 ```{r, warning = FALSE}
 
@@ -482,11 +567,11 @@ Homo.sapiens
 
 ## OrganismDb packages
 
-* Updateable - can change TxDb object
+* Updateable - can change TxDb object : 更新可能 - TxDbオブジェクトを変更できます
 
-* columns and keytypes span all underlying objects
+* columns and keytypes span all underlying objects : columns と keytypes はすべての内在するオブジェクトにまたがります
 
-* Calls to TxDb accessors include a 'columns' argument
+* Calls to TxDb accessors include a 'columns' argument : TxDbのアクセサーへの呼び出しには'columns'引数が含まれます
 
 ```{r , warning = FALSE}
 
@@ -496,25 +581,27 @@ head(genes(Homo.sapiens, columns = c("ENTREZID","ALIAS","UNIPROT")),4)
 
 ## OrganismDb exercises
 
-* Get all the GO terms for BRCA1
+* Get all the GO terms for BRCA1 : BRCA1のすべてのGO termを取得しましょう
 
-* What gene does the UCSC transcript ID uc002fai.3 map to?
+* What gene does the UCSC transcript ID uc002fai.3 map to? : UCSC transcript ID uc002fai.3 はどの遺伝子にマップされますか?
 
-* How many other transcripts does that gene have?
+* How many other transcripts does that gene have? : その遺伝子には他にいくつの転写産物がありますか?
 
 * Get all the transcripts from the hg19 genome build, along with their
-  Ensembl gene ID, UCSC transcript ID and gene symbol
+  Ensembl gene ID, UCSC transcript ID and gene symbol : hg19 ゲノムビルドからすべての転写産物を、
+  Ensemblの遺伝子ID、UCSCの転写産物ID、および遺伝子シンボルとともに取得しましょう
 
 ## Organism.dplyr package
 
-* Combines the data from TxDb and Org.Db associated packages into local database.
+* Combines the data from TxDb and Org.Db associated packages into local database. : TxDb と Org.Db 関連のパッケージの
+データをローカルのデータベースに統合します。
 
-* Allows functions from both _org.\*_ and _TxDb.\*_
+* Allows functions from both _org.\*_ and _TxDb.\*_ : _org.\*_ と _TxDb.\*_ の両方の機能を許可します
     - `keytypes()`, `select()`, ...
     - `exons()`, `promoters()`, ...
 
 * Allows for filtering and display of combined TxDb and Org.Db information
-  through `dplyr` functions.
+  through `dplyr` functions. : `dplyr` の関数を介して、TxDbとOrg.Dbが統合された情報のフィルタリングと表示を可能にします。
 
 ```{r, warning = FALSE}
 library(Organism.dplyr)
@@ -528,6 +615,8 @@ src
 
 Get promoters from a TxDb object (we use a small version)
 
+TxDb オブジェクトからプロモーターを取得しましょう (小さいバージョンのものを使用します(訳注: ここは意図掴めず))
+
 ```{r, warning = FALSE}
 
 options(width = 120)
@@ -538,6 +627,8 @@ promoters(src)
 
 Extract a table from the underlying database
 
+基になるデータベースからテーブルを抽出する
+
 ```{r, warning = FALSE}
 
 tbl(src, "id")
@@ -547,6 +638,8 @@ tbl(src, "id")
 
 ## Organism.dplyr
 Make a complex query between tables in the underlying database
+
+基になるデータベースのテーブル間で複雑なクエリを作成する
 
 ```{r, warning = FALSE}
 
@@ -561,13 +654,13 @@ inner_join(tbl(src, "id"), tbl(src, "ranges_gene")) %>%
 
 ## Organism.dplyr exercises
 
-* How many supported organisms are implemented in Organism.dplyr?
+* How many supported organisms are implemented in Organism.dplyr? : Organism.dplyrでの動作がサポートされている生物種はいくつありますか?
 
-* Display the ensembl Id and genename description for symbol "NAT2".
+* Display the ensembl Id and genename description for symbol "NAT2". : シンボル "NAT2" のensembl Idと遺伝子名の説明を表示してみましょう
 
-* Show all the alias for "NAT2" in the database.
-
-* Display Gene ontology (GO) information for gene symbol "Nat2".
+* Show all the alias for "NAT2" in the database. : データベース内の "NAT2" のすべてのエイリアスを表示してみましょう
+ 
+* Display Gene ontology (GO) information for gene symbol "Nat2". : 遺伝子シンボル"Nat2" の Gene ontology (GO) の情報を表示してみましょう
 
 
 
@@ -576,6 +669,10 @@ inner_join(tbl(src, "id"), tbl(src, "ranges_gene")) %>%
 BSgenome packages contain sequence information for a given
 species/build. There are many such packages - you can get a listing
 using `available.genomes`
+
+BSgenomeパッケージには、特定の種/ビルドのシーケンス情報が含まれています。
+そのようなパッケージはたくさんあります - `available.genomes` を使用して
+そのリストを取得できます。
 
 ```{r, warning = FALSE}
 
@@ -586,6 +683,8 @@ head(available.genomes())
 ## BSgenome packages
 
 We can load and inspect a BSgenome package
+
+BSgenomeパッケージを読み込んで調査できます
 
 ```{r, warning = FALSE}
 
@@ -600,6 +699,11 @@ The main accessor is `getSeq`, and you can get data by sequence (e.g.,
 entire chromosome or unplaced scaffold), or by
 passing in a GRanges object, to get just a region.
 
+メインのアクセサーは`getSeq`であり、
+シーケンス (たとえば、染色体全体またはそこに配置されていないスキャフォールド)
+ごとに、またはGRangesオブジェクトを渡すことによって、データを取得することで
+ある領域のみを取得できます。
+
 ```{r, warning = FALSE}
 
 getSeq(Hsapiens, "chr1")
@@ -611,15 +715,23 @@ The Biostrings package contains most of the code for dealing with
 these `*StringSet` objects - please see the Biostrings vignettes and
 help pages for more information.
 
+Biostringsパッケージには、これらの `*StringSet` オブジェクトを処理するための
+ほとんどのコードが含まれています。
+詳細については、Biostringsのビネットとヘルプページを参照してください。
+
 ## BSgenome exercises
 
-* Get the sequences for all transcripts of the TP53 gene
+* Get the sequences for all transcripts of the TP53 gene : TP53遺伝子のすべての転写産物の配列を取得してみましょう
 
 ## AnnotationHub
 
 AnnotationHub is a package that allows us to query and download many
 different annotation objects, without having to explicitly install
 them.
+
+AnnotationHubは、明示的にインストールしなくても、
+さまざまなアノテーションオブジェクトをクエリしてダウンロードできるように
+してくれるパッケージです。
 
 ```{r, include = FALSE}
 
@@ -642,6 +754,9 @@ hub
 Finding the 'right' resource on AnnotationHub is like using Google - a
 well posed query is necessary to find what you are after. Useful
 queries are based on
+
+AnnotationHubで '適切な' リソースを見つけることは、Googleを使うようなものです。
+目的物を見つけるには、適切なクエリが必要です。有用なクエリは
 
 * Data provider
 
@@ -722,6 +837,8 @@ whatIwant <- keepStandardChromosomes(whatIwant, pruning.mode = "coarse")
 
 We can use these data as they are, or convert to a TxDb format:
 
+これらのデータをそのまま使用することも、TxDbフォーマットに変換することもできます:
+
 ```{r, warning = FALSE}
 
 GRCh38TxDb <- makeTxDbFromGRanges(whatIwant)
@@ -731,16 +848,19 @@ GRCh38TxDb
 ## AnnotationHub exercises
 
 * How many resources are on AnnotationHub for Atlantic salmon (Salmo
-  salar)?
+  salar)? : AnnotationHubに 大西洋鮭 (Salmo salar) のリソースはいくつありますか？
 
 * Get the most recent Ensembl build for domesticated dog (Canis
-  familiaris) and make a TxDb
+  familiaris) and make a TxDb : 犬 (Canis familiaris) の最新のEnsemblビルドを取得し、TxDbを作ってみましょう
 
 ## biomaRt
 
 
 The biomaRt package allows queries to an Ensembl Biomart server. We
 can see the choices of servers that we can use:
+
+biomaRtパッケージは、Ensembl Biomartサーバーへのクエリを可能にします。
+下記で使用できるサーバーの選択肢を確認できます:
 
 ```{r, eval = FALSE}
 
@@ -758,6 +878,8 @@ listMarts(host = "useast.ensembl.org")
 
 And we can then check for the available data sets on a particular
 server.
+
+そして、特定のサーバーで利用可能なデータセットを確認できます。
 
 ```{r, eval = FALSE}
 
@@ -786,6 +908,9 @@ head(listDatasets(mart))
 After setting up a `mart` object pointing to the server and data set
 that we care about, we can make queries. We first set up the `mart` object.
 
+対象のサーバーとデータセットを指す `mart` オブジェクトを設定したら、
+クエリを実行できます。最初に `mart` オブジェクトを設定します。
+
 ```{r, eval = FALSE}
 
 mart <- useEnsembl("ensembl","hsapiens_gene_ensembl"                   )
@@ -797,17 +922,20 @@ getBM(*attributes*, *filters*, *values*, *mart*)
 
 where
 
-* attributes are the things we **want**
-* filters are the *types of* IDs we **have**
+* attributes are the things we **want** : attributesは私たちが**ほしい**情報です
+* filters are the *types of* IDs we **have** : filtersは私たちが**持っている**ID*のタイプ*です
 
-* values are the IDs we **have**
+* values are the IDs we **have** : valuesは私たちが**持っている**ID群です
 
-* mart is the `mart` object we set up
+* mart is the `mart` object we set up : martは設定した `mart` オブジェクトです
 
 ## biomaRt attributes and filters
 
 Both attributes and filters have rather inscrutable names, but a
 listing can be accessed using
+
+attributes と filters はどちらもかなりわかりにくい名前を持っていますが、
+リストには以下を使用してアクセスできます
 
 ```{r, eval = FALSE}
 
@@ -837,6 +965,8 @@ head(filts)
 
 A simple example query
 
+簡単なクエリ例
+
 ```{r, eval = FALSE}
 
 afyids <- c("1000_at","1001_at","1002_f_at","1007_s_at")
@@ -852,6 +982,6 @@ getBM(c("affy_hg_u95av2", "hgnc_symbol"), c("affy_hg_u95av2"), afyids, mart)
 
 ## biomaRt exercises
 
-* Get the Ensembl gene IDs and HUGO symbol for Entrez Gene IDs 672, 5468 and 7157
+* Get the Ensembl gene IDs and HUGO symbol for Entrez Gene IDs 672, 5468 and 7157 : Entrez遺伝子ID 672、5468、7157のEnsembl遺伝子IDとHUGOシンボルを取得してみましょう
 
-* What do you get if you query for the 'gene_exon' for GAPDH?
+* What do you get if you query for the 'gene_exon' for GAPDH? : GAPDHに対して 'gene_exon' をクエリすると何が得られるでしょうか?
