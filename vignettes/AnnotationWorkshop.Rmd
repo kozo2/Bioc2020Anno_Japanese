@@ -670,6 +670,10 @@ BSgenome packages contain sequence information for a given
 species/build. There are many such packages - you can get a listing
 using `available.genomes`
 
+BSgenomeパッケージには、特定の種/ビルドのシーケンス情報が含まれています。
+そのようなパッケージはたくさんあります - `available.genomes` を使用して
+そのリストを取得できます。
+
 ```{r, warning = FALSE}
 
 library(BSgenome)
@@ -679,6 +683,8 @@ head(available.genomes())
 ## BSgenome packages
 
 We can load and inspect a BSgenome package
+
+BSgenomeパッケージを読み込んで調査できます
 
 ```{r, warning = FALSE}
 
@@ -693,6 +699,11 @@ The main accessor is `getSeq`, and you can get data by sequence (e.g.,
 entire chromosome or unplaced scaffold), or by
 passing in a GRanges object, to get just a region.
 
+メインのアクセサーは`getSeq`であり、
+シーケンス (たとえば、染色体全体またはそこに配置されていないスキャフォールド)
+ごとに、またはGRangesオブジェクトを渡すことによって、データを取得することで
+ある領域のみを取得できます。
+
 ```{r, warning = FALSE}
 
 getSeq(Hsapiens, "chr1")
@@ -704,9 +715,13 @@ The Biostrings package contains most of the code for dealing with
 these `*StringSet` objects - please see the Biostrings vignettes and
 help pages for more information.
 
+Biostringsパッケージには、これらの `*StringSet` オブジェクトを処理するための
+ほとんどのコードが含まれています。
+詳細については、Biostringsのビネットとヘルプページを参照してください。
+
 ## BSgenome exercises
 
-* Get the sequences for all transcripts of the TP53 gene
+* Get the sequences for all transcripts of the TP53 gene : TP53遺伝子のすべての転写産物の配列を取得してみましょう
 
 ## AnnotationHub
 
