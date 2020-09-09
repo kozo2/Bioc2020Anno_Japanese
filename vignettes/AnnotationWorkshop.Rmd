@@ -859,6 +859,9 @@ GRCh38TxDb
 The biomaRt package allows queries to an Ensembl Biomart server. We
 can see the choices of servers that we can use:
 
+biomaRtパッケージは、Ensembl Biomartサーバーへのクエリを可能にします。
+下記で使用できるサーバーの選択肢を確認できます:
+
 ```{r, eval = FALSE}
 
 library(biomaRt)
@@ -875,6 +878,8 @@ listMarts(host = "useast.ensembl.org")
 
 And we can then check for the available data sets on a particular
 server.
+
+そして、特定のサーバーで利用可能なデータセットを確認できます。
 
 ```{r, eval = FALSE}
 
@@ -903,6 +908,9 @@ head(listDatasets(mart))
 After setting up a `mart` object pointing to the server and data set
 that we care about, we can make queries. We first set up the `mart` object.
 
+対象のサーバーとデータセットを指す `mart` オブジェクトを設定したら、
+クエリを実行できます。最初に `mart` オブジェクトを設定します。
+
 ```{r, eval = FALSE}
 
 mart <- useEnsembl("ensembl","hsapiens_gene_ensembl"                   )
@@ -914,17 +922,20 @@ getBM(*attributes*, *filters*, *values*, *mart*)
 
 where
 
-* attributes are the things we **want**
-* filters are the *types of* IDs we **have**
+* attributes are the things we **want** : attributesは私たちが**ほしい**情報です
+* filters are the *types of* IDs we **have** : filtersは私たちが**持っている**ID*のタイプ*です
 
-* values are the IDs we **have**
+* values are the IDs we **have** : valuesは私たちが**持っている**ID群です
 
-* mart is the `mart` object we set up
+* mart is the `mart` object we set up : martは設定した `mart` オブジェクトです
 
 ## biomaRt attributes and filters
 
 Both attributes and filters have rather inscrutable names, but a
 listing can be accessed using
+
+attributes と filters はどちらもかなりわかりにくい名前を持っていますが、
+リストには以下を使用してアクセスできます
 
 ```{r, eval = FALSE}
 
@@ -954,6 +965,8 @@ head(filts)
 
 A simple example query
 
+簡単なクエリ例
+
 ```{r, eval = FALSE}
 
 afyids <- c("1000_at","1001_at","1002_f_at","1007_s_at")
@@ -969,6 +982,6 @@ getBM(c("affy_hg_u95av2", "hgnc_symbol"), c("affy_hg_u95av2"), afyids, mart)
 
 ## biomaRt exercises
 
-* Get the Ensembl gene IDs and HUGO symbol for Entrez Gene IDs 672, 5468 and 7157
+* Get the Ensembl gene IDs and HUGO symbol for Entrez Gene IDs 672, 5468 and 7157 : Entrez遺伝子ID 672、5468、7157のEnsembl遺伝子IDとHUGOシンボルを取得してみましょう
 
-* What do you get if you query for the 'gene_exon' for GAPDH?
+* What do you get if you query for the 'gene_exon' for GAPDH? : GAPDHに対して 'gene_exon' をクエリすると何が得られるでしょうか?
