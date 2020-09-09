@@ -593,14 +593,15 @@ head(genes(Homo.sapiens, columns = c("ENTREZID","ALIAS","UNIPROT")),4)
 
 ## Organism.dplyr package
 
-* Combines the data from TxDb and Org.Db associated packages into local database.
+* Combines the data from TxDb and Org.Db associated packages into local database. : TxDb と Org.Db 関連のパッケージの
+データをローカルのデータベースに統合します。
 
-* Allows functions from both _org.\*_ and _TxDb.\*_
+* Allows functions from both _org.\*_ and _TxDb.\*_ : _org.\*_ と _TxDb.\*_ の両方の機能を許可します
     - `keytypes()`, `select()`, ...
     - `exons()`, `promoters()`, ...
 
 * Allows for filtering and display of combined TxDb and Org.Db information
-  through `dplyr` functions.
+  through `dplyr` functions. : `dplyr` の関数を介して、TxDbとOrg.Dbが統合された情報のフィルタリングと表示を可能にします。
 
 ```{r, warning = FALSE}
 library(Organism.dplyr)
@@ -614,6 +615,8 @@ src
 
 Get promoters from a TxDb object (we use a small version)
 
+TxDb オブジェクトからプロモーターを取得しましょう (小さいバージョンのものを使用します(訳注: ここは意図掴めず))
+
 ```{r, warning = FALSE}
 
 options(width = 120)
@@ -624,6 +627,8 @@ promoters(src)
 
 Extract a table from the underlying database
 
+基になるデータベースからテーブルを抽出する
+
 ```{r, warning = FALSE}
 
 tbl(src, "id")
@@ -633,6 +638,8 @@ tbl(src, "id")
 
 ## Organism.dplyr
 Make a complex query between tables in the underlying database
+
+基になるデータベースのテーブル間で複雑なクエリを作成する
 
 ```{r, warning = FALSE}
 
@@ -647,13 +654,13 @@ inner_join(tbl(src, "id"), tbl(src, "ranges_gene")) %>%
 
 ## Organism.dplyr exercises
 
-* How many supported organisms are implemented in Organism.dplyr?
+* How many supported organisms are implemented in Organism.dplyr? : Organism.dplyrでの動作がサポートされている生物種はいくつありますか?
 
-* Display the ensembl Id and genename description for symbol "NAT2".
+* Display the ensembl Id and genename description for symbol "NAT2". : シンボル "NAT2" のensembl Idと遺伝子名の説明を表示してみましょう
 
-* Show all the alias for "NAT2" in the database.
-
-* Display Gene ontology (GO) information for gene symbol "Nat2".
+* Show all the alias for "NAT2" in the database. : データベース内の "NAT2" のすべてのエイリアスを表示してみましょう
+ 
+* Display Gene ontology (GO) information for gene symbol "Nat2". : 遺伝子シンボル"Nat2" の Gene ontology (GO) の情報を表示してみましょう
 
 
 
